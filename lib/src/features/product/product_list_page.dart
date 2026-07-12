@@ -20,6 +20,50 @@ class ProductListPage extends StatelessWidget
                 backgroundColor: Theme.of(context).colorScheme.inversePrimary,
                 actions: [
                     IconButton(
+                        icon: const Icon(Icons.sort),
+                        onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                    return SimpleDialog(
+                                        title: const Text('Ordenar por:'),
+                                        children: <Widget>[
+                                            SimpleDialogOption(
+                                                onPressed: () {
+                                                    Navigator.pop(context, 'Nome (A-Z)');
+                                                    productViewModel.sortByName(ascending: true);
+                                                },
+                                                child: const Text('Nome (A-Z)'),
+                                            ),
+                                            SimpleDialogOption(
+                                                onPressed: () {
+                                                    Navigator.pop(context, 'Nome (Z-A)');
+                                                    productViewModel.sortByName(ascending: false);
+                                                },
+                                                child: const Text('Nome (Z-A)'),
+                                            ),
+                                            SimpleDialogOption(
+                                                onPressed: () {
+                                                    Navigator.pop(context, 'Preço (Menor para Maior)');
+                                                    productViewModel.sortByPrice(ascending: true);
+                                                },
+                                                child: const Text('Preço (Menor para Maior)'),
+                                            ),
+                                            SimpleDialogOption(
+                                                onPressed: () {
+                                                    Navigator.pop(context, 'Preço (Maior para Menor)');
+                                                    productViewModel.sortByPrice(ascending: false);
+                                                },
+                                                child: const Text('Preço (Maior para Menor)'),
+                                            ),
+                                        ],
+                                    );
+                                },
+                            );
+                        },
+                        tooltip: 'Ordernar Produtos',
+                    ),
+                    IconButton(
                         icon: const Icon(Icons.add),
                         onPressed: () => Navigator.pushNamed(context, '/products/form'),
                         tooltip: 'Adicionar Produto',
@@ -92,13 +136,13 @@ class ProductListPage extends StatelessWidget
                                                         mainAxisSize: MainAxisSize.min,
                                                         children: [
                                                             IconButton(
-                                                                tooltip: 'Adicionar aos Favoritos',
                                                                 icon: Icon(
                                                                     product.isFavorite
                                                                         ? Icons.favorite
                                                                         : Icons.favorite_border,
                                                                     color: product.isFavorite ? Colors.red : null,
                                                                 ),
+                                                                tooltip: 'Adicionar aos Favoritos',
                                                                 onPressed: () =>
                                                                 productViewModel.toggleFavorite(product.id),
                                                             ),
