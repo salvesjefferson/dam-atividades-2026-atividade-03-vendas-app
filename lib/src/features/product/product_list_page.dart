@@ -19,6 +19,7 @@ class ProductListPage extends StatelessWidget
                 title: const Text('Produtos'),
                 backgroundColor: Theme.of(context).colorScheme.inversePrimary,
                 actions: [
+                    //botão de ordenação
                     IconButton(
                         icon: const Icon(Icons.sort),
                         onPressed: () {
@@ -26,6 +27,7 @@ class ProductListPage extends StatelessWidget
                                 context: context,
                                 builder: (BuildContext context) {
                                     return SimpleDialog(
+                                        //opções de ordenação
                                         title: const Text('Ordenar por:'),
                                         children: <Widget>[
                                             SimpleDialogOption(
@@ -102,6 +104,7 @@ class ProductListPage extends StatelessWidget
                         child: productViewModel.products.isEmpty
                             ? const Center(child: Text('Nenhum produto cadastrado.'))
                             : GridView.builder(
+                            //mudança de listview pra gridview
                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
                                     mainAxisSpacing: 10,
