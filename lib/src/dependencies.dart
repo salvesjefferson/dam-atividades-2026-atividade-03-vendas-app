@@ -13,6 +13,7 @@ import 'package:vendas_app/src/features/category/category_viewmodel.dart';
 import 'package:vendas_app/src/features/client/client_viewmodel.dart';
 import 'package:vendas_app/src/features/order/order_viewmodel.dart';
 import 'package:vendas_app/src/features/product/product_viewmodel.dart';
+import 'package:vendas_app/src/features/settings/settins_viewmodel.dart';
 
 List<SingleChildWidget> get appProviders {
   // Inicialização de DataSources
@@ -42,6 +43,9 @@ List<SingleChildWidget> get appProviders {
     ),
     ChangeNotifierProvider(
       create: (_) => CartViewModel(orderRepository),
+    ),
+    ChangeNotifierProvider(
+      create: (_) => SettingViewModel(),
     ),
   ];
 }
